@@ -1,26 +1,26 @@
 % HammingCode
-%codierung
-G1=eye(4); %4x4 Einheitsmatrix
-Gp=[ 1 1 1;1 0 1;0 1 1;1 0 0 ]; %Prüfmatrix
+%coding
+G1=eye(4); %4x4 unit matrix
+Gp=[ 1 1 1;1 0 1;0 1 1;1 0 0 ]; %PCheck matrix
  
-G=[G1 Gp]; %Setze Prüfmatrix und Einheitsmatrix zusammen
-DW= [ 0 0 0 1]; %Datenwort
-CW=DW*G; %CodierungsformelHammingcode
+G=[G1 Gp]; %Assemble test matrix and identity matrix
+DW= [ 0 0 0 1]; %Data word
+CW=DW*G; %Coding formula Hamming code
  
 fprintf('codiertes Codewort: ');
-CW=mod(CW,2); %Mache CW Modulo2 --> aus 2 mach 0, aus 3 mach 1 usw.
-disp(CW); %Gebe Codewort aus
+CW=mod(CW,2); %Make CW modulo 2 --> make 0 out of 2, make 1 out of 3 etc.
+disp(CW); %display code word
 fprintf('\n');
  
-mask=[0 1 0 0 0 0 0]; %Mit dieser Maske kann man gezielt einen Bitfehler erzeugen, indem man die entrsprechende Position auf 1 setzt
-NCW=xor(mask,CW); %Bitfehler an vorgegebener Position wird im Codewort erzeugt
+mask=[0 1 0 0 0 0 0]; %With this mask you can generate a bit error by setting the corresponding position to 1
+NCW=xor(mask,CW); %Bit error at specified position is generated in the code word
 fprintf('gestörtes Codewort: ');
-disp(NCW); %Fehlerhaftes Codewort wird angezeigt
+disp(NCW); %Incorrect code word is displayed
 fprintf('\n');
  
  
  
-%Syndrom berechnen
+%calculate syndrom
  
 H1=eye(3);
 H=[transpose(Gp) H1];
